@@ -2,11 +2,13 @@ package com.test.firstspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 //@EnableEurekaClient
+@EnableCircuitBreaker
 @EnableSwagger2
 public class FirstspringbootApplication {
 

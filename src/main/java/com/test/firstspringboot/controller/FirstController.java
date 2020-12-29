@@ -1,5 +1,6 @@
 package com.test.firstspringboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.test.firstspringboot.model.Student;
 
 import io.swagger.annotations.Api;
@@ -32,6 +34,7 @@ public class FirstController {
 
 	@ApiOperation(value = "This api is for getting the students")
 	@GetMapping(path = "/first", produces = "application/json")
+	@HystrixCommand(fallbackMethod = "getStudentFallBack")
 	public List<Student> getStudent() throws Exception {
 //		throw new Exception("I am not ready");
 		List<Student> stList = firstService.getStudent();
@@ -52,5 +55,10 @@ public class FirstController {
 
 		return new ResponseEntity<String>("{\"errocode\" : \"ABC123\", \"message\" : \"got exception \"} ",
 				HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	public List<Student> getStudentFallBack() throws Exception {
+		List<Student> stList = new ArrayList<>();
+		return stList;
 	}
 }

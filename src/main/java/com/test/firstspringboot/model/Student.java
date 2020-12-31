@@ -1,24 +1,31 @@
 package com.test.firstspringboot.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-//@Entity
-@Document
+@Entity
+//@Document
 public class Student {
 
-	@Id
-	private String id;
+//	@Id
+//	private String id;
 
+	@Id
+	@GeneratedValue
+	private long id;
+
+//	@Column(name="student_name")
 	private String name;
 
 	private int rollno;
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -42,7 +49,7 @@ public class Student {
 
 	}
 
-	public Student(String id, String string, int rollno) {
+	public Student(long id, String string, int rollno) {
 		super();
 		this.id = id;
 		this.name = string;

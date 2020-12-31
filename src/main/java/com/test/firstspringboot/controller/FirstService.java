@@ -15,12 +15,12 @@ public class FirstService {
 	StudentRepository repo;
 
 	public List<Student> getStudent() {
-		List<Student> stList = (List<Student>)repo.findAll();
+		List<Student> stList = (List<Student>) repo.findAll();
 
 		return stList;
 	}
 
-	public String insertStudent(Student student) {
+	public long insertStudent(Student student) {
 
 		Student st = repo.save(student);
 
